@@ -1,3 +1,5 @@
+using System;
+
 namespace Sportsball.Core.Tests.Utils;
 
 internal class PlayerStatsBuilder
@@ -6,7 +8,7 @@ internal class PlayerStatsBuilder
 
     public PlayerStatsBuilder()
     {
-        _stats = new PlayerStats();
+        _stats = new PlayerStats(new PlayerID(Guid.NewGuid()));
     }
 
     public PlayerStatsBuilder Add(string stat, decimal value)

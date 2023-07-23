@@ -1,4 +1,3 @@
-
 namespace Sportsball.Core;
 
 /// <summary>

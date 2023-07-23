@@ -1,4 +1,3 @@
-
 namespace Sportsball.Core;
 
 /// <summary>
@@ -6,16 +5,20 @@ namespace Sportsball.Core;
 /// </summary>
 public readonly struct PlayerStats
 {
-    public PlayerStats()
-    { }
+    public PlayerStats(PlayerID playerID)
+    {
+        ID = playerID;
+    }
 
     /// <summary>
-    /// ID of the player
+    /// ID of the player the stats are associated with
     /// </summary>
-    public Guid PlayerID { get; init; }
+    public PlayerID ID { get; init; }
 
     /// <summary>
     /// A player's stats for a single game; maps the statistic to a value
     /// </summary>
     public Dictionary<string, decimal> Stats { get; init; } = new Dictionary<string, decimal>();
 }
+
+public record PlayerID(Guid ID);
