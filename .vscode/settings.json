@@ -1,3 +1,6 @@
 {
-    "dotnet.defaultSolution": "src/Sportsball.sln"
+    "dotnet.defaultSolution": "src/Sportsball.sln",
+    "cSpell.words": [
+        "Sportsball"
+    ]
 }
