@@ -1,0 +1,7 @@
+= suburban-sportsball
+
+A one-off fantasy football engine to help calculate best ball scores.
+
+== Design
+
+include::./docs/scoring-engine.adoc[Scoring Engine]

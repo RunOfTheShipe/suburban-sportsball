@@ -1,0 +1,40 @@
+== Scoring Engine
+
+=== League Settings
+
+- Contains a mapping of points per metric (e.g.: points per rushing yard)
+- Number of players per position in a line up (e.g.: 1 QB, 2 RB, 3 WR, 2 FLEX)
+
+=== Lineup
+
+- A lineup contains set of players and positions the players are in
+
+=== Player Stats
+
+- Represents the stats for each player
+
+=== Player Scoring
+
+A player's individual score is calculated based on:
+
+- Stats for the player
+- Position within the lineup
+- Points based on league settings
+
+=== Lineup Scoring
+
+A lineup score is based on an aggregate of individual player scores.
+
+For each position in the line-up, the players associated with that position have their score calculated.
+
+The players with the highest score from the line up are automatically included. E.g.: if line up contains 3 RB and the league settings only contain 2 RB, the top 2 RB scores are used in the final calculation.
+
+==== Flex Positions
+
+A line up may contain flex positions - which is a player that could play at any position in the line up (a common scenario for this is a RB or WR).
+
+Players identified as flex players in a line up have their score calculated for each position available in the lineup.
+
+For example, a flex player would have a WR score and RB score. When calculating the WR score in the line up, the flex player will be included as part of both the WR and RB position calculation.
+
+Once a flex player has been "used," the flex player is no longer included in the calculation of other positions.
