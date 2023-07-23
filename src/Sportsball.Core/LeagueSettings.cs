@@ -4,7 +4,7 @@ namespace Sportsball.Core;
 /// <summary>
 /// Represents the settings for a league
 /// </summary>
-public struct LeagueSettings
+public readonly struct LeagueSettings
 {
     public LeagueSettings()
     { }

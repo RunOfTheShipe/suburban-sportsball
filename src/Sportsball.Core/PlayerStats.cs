@@ -4,7 +4,7 @@ namespace Sportsball.Core;
 /// <summary>
 /// Represents the stats for a player in a game
 /// </summary>
-public struct PlayerStats
+public readonly struct PlayerStats
 {
     public PlayerStats()
     { }
@@ -12,7 +12,7 @@ public struct PlayerStats
     /// <summary>
     /// ID of the player
     /// </summary>
-    public Guid PlayerID { get; set; }
+    public Guid PlayerID { get; init; }
 
     /// <summary>
     /// A player's stats for a single game; maps the statistic to a value

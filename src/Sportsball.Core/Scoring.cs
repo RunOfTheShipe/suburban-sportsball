@@ -11,6 +11,11 @@ public class Scoring
         _settings = settings;
     }
 
+    /// <summary>
+    /// Calculates the score for the given player, based on the league settings
+    /// </summary>
+    /// <param name="player">Player to score</param>
+    /// <returns>Score for the player</returns>
     public decimal ScorePlayer(PlayerStats player)
     {
         decimal score = 0;

@@ -18,7 +18,6 @@
 A player's individual score is calculated based on:
 
 - Stats for the player
-- Position within the lineup
 - Points based on league settings
 
 === Lineup Scoring
