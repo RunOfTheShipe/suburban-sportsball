@@ -49,6 +49,55 @@ public class ScoringTests
     }
 
     [Fact]
+    public void ScoreLineup_BestPlayerForPosition()
+    {
+        // GIVEN:   a lineup with 2 RB positions
+        var settings = new LeagueSettingsBuilder()
+            .AddMetric("RushYards", 1 / 10M)
+            .AddMetric("RecYards", 1 / 20M)
+            .AddMetric("PassYards", 1 / 20M)
+            .AddMetric("TD", 6)
+            .AddPosition("RB", 2)
+            .Build();
+
+        // AND:     Three running backs
+        var rb1 = new PlayerStatsBuilder()
+            .Add("RushYards", 100)  // 5pts
+            .Add("TD", 1)           // 6pts
+            .Build();
+
+        var rb2 = new PlayerStatsBuilder()
+            .Add("RushYards", 100)  // 5pts
+            .Add("TD", 2)           // 12pts
+            .Build();
+
+        var rb3 = new PlayerStatsBuilder()
+            .Add("RushYards", 100)  // 5pts
+            .Add("TD", 3)           // 18pts
+            .Build();
+
+        var players = new Dictionary<PlayerID, PlayerStats>()
+        {
+            { rb1.ID, rb1 },
+            { rb2.ID, rb2 },
+            { rb3.ID, rb3 },
+        };
+
+        var lineup = new LineupBuilder()
+            .AddPlayer(rb1.ID, "RB")
+            .AddPlayer(rb2.ID, "RB")
+            .AddPlayer(rb3.ID, "RB")
+            .Build();
+
+        // WHEN:    The lineup is scored
+        var scoring = new Scoring(settings);
+        var actualPts = scoring.ScoreLineup(lineup, players);
+
+        // THEN:    The best two running backs should be selected
+        actualPts.Should().Be(40);  // 17 (rb1) + 23 (rb2)
+    }
+
+    [Fact]
     public void ScoreLineup_Basic()
     {
         var settings = new LeagueSettingsBuilder()
