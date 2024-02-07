@@ -62,17 +62,17 @@ public class ScoringTests
 
         // AND:     Three running backs
         var rb1 = new PlayerStatsBuilder()
-            .Add("RushYards", 100)  // 5pts
+            .Add("RushYards", 100)  // 10pts
             .Add("TD", 1)           // 6pts
             .Build();
 
         var rb2 = new PlayerStatsBuilder()
-            .Add("RushYards", 100)  // 5pts
+            .Add("RushYards", 100)  // 10pts
             .Add("TD", 2)           // 12pts
             .Build();
 
         var rb3 = new PlayerStatsBuilder()
-            .Add("RushYards", 100)  // 5pts
+            .Add("RushYards", 100)  // 10pts
             .Add("TD", 3)           // 18pts
             .Build();
 
@@ -94,7 +94,7 @@ public class ScoringTests
         var actualPts = scoring.ScoreLineup(lineup, players);
 
         // THEN:    The best two running backs should be selected
-        actualPts.Should().Be(40);  // 17 (rb1) + 23 (rb2)
+        actualPts.Should().Be(50);  // 22 (rb1) + 28 (rb2)
     }
 
     [Fact]
