@@ -61,6 +61,6 @@ public class LineupBuilderTests
             .AddPlayer(wr2.ID, "FLEX")
             .Build();
         
-        actual.Should().Be(expected);
+        actual.PlayerPositions.Should().BeEquivalentTo(expected.PlayerPositions);
     }
 }

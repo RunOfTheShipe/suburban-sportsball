@@ -73,6 +73,13 @@ public class LineupBuilder
             // put the player in the first open position and then recurse
             foreach (var (pos, positionPlayers) in current.Positions)
             {
+                // check to see if the current player can play the position we're looking at right now; if not,
+                // skip this position and go onto the next one (e.g.: RBs can't play the QB position)
+                if (!CanPlayPosition(ref player, pos))
+                {
+                    continue;
+                }
+
                 // for the current position, look to see if there is an opening the player
                 // can fit into
                 for (int j = 0; j < positionPlayers.Length; j++)
@@ -208,5 +215,24 @@ public class LineupBuilder
         }
 
         return score;
+    }
+
+    /// <summary>
+    /// Checks to see if the player can play the requested position. E.g.: can a RB play the WR position?
+    /// </summary>
+    /// <param name="player">Player</param>
+    /// <param name="requestedPosition">Requested position</param>
+    /// <returns>True if the player can play the position</returns>
+    private bool CanPlayPosition(ref PlayerStats player, string requestedPosition)
+    {
+        switch (player.Position)
+        {
+            case "RB":
+            case "TE":
+            case "WR":
+                return requestedPosition == player.Position || requestedPosition == "FLEX";
+            default:
+                return requestedPosition == player.Position;
+        }
     }
 }
