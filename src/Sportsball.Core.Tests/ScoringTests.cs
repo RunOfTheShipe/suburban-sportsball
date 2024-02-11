@@ -83,7 +83,7 @@ public class ScoringTests
             { rb3.ID, rb3 },
         };
 
-        var lineup = new LineupBuilder()
+        var lineup = new Utils.LineupBuilder()
             .AddPlayer(rb1.ID, "RB")
             .AddPlayer(rb2.ID, "RB")
             .AddPlayer(rb3.ID, "RB")
@@ -136,7 +136,7 @@ public class ScoringTests
             { rb2.ID, rb2 },
         };
 
-        var lineup = new LineupBuilder()
+        var lineup = new Utils.LineupBuilder()
             .AddPlayer(qb1.ID, "QB")
             .AddPlayer(qb2.ID, "QB")
             .AddPlayer(rb1.ID, "RB")
