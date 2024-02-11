@@ -25,26 +25,26 @@ public class LineupBuilderTests
             .Build();
 
         // AND:     some players
-        var qb1 = new PlayerStatsBuilder()
+        var qb1 = new PlayerStatsBuilder("QB")
             .Add("PassYards", 100)  // 5pts
             .Add("TD", 1)           // 6pts
             .Build();
-        var qb2 = new PlayerStatsBuilder()
+        var qb2 = new PlayerStatsBuilder("QB")
             .Add("PassYards", 200)  // 10pts
             .Build();
 
-        var rb1 = new PlayerStatsBuilder()
+        var rb1 = new PlayerStatsBuilder("RB")
             .Add("RushYards", 50)   // 5pts
             .Add("TD", 2)           // 12pts
             .Build();
-        var rb2 = new PlayerStatsBuilder()
+        var rb2 = new PlayerStatsBuilder("RB")
             .Add("RushYards", 100)  // 10pts
             .Build();
 
-        var wr1 = new PlayerStatsBuilder()
+        var wr1 = new PlayerStatsBuilder("WR")
             .Add("RecYards", 100)   // 5pts
             .Build();
-        var wr2 = new PlayerStatsBuilder()
+        var wr2 = new PlayerStatsBuilder("WR")
             .Add("RecYards", 160)   // 8pts
             .Build();
 

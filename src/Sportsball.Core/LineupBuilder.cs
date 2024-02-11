@@ -1,4 +1,5 @@
 using System.Data.Common;
+using System.Runtime.CompilerServices;
 
 namespace Sportsball.Core;
 
@@ -59,6 +60,13 @@ public class LineupBuilder
         for (int i = 0; i < players.Count; i++)
         {
             var player = players[i];
+
+            // if the player is already in the lineup, skip this and go to the next one
+            if (current.Players.Contains(player.ID.ID))
+            {
+                continue;
+            }
+
             var remainingPlayers = players.Where(p => p.ID != player.ID).ToList();
 
 
@@ -73,6 +81,7 @@ public class LineupBuilder
                     if (positionPlayers[j] == null)
                     {
                         positionPlayers[j] = player;
+                        current.Players.Add(player.ID.ID);
 
                         // recurse to fill the rest of the lineup - eventually, we'll have a full
                         // lineup
@@ -96,6 +105,7 @@ public class LineupBuilder
                         // NOTE: Order of a player in the position is not important - can break out
                         // of this position loop and move to the next position
                         positionPlayers[j] = null;
+                        current.Players.Remove(player.ID.ID);
                         break;       
                     }
                 }
@@ -115,9 +125,15 @@ public class LineupBuilder
         /// </summary>
         public Dictionary<string, PlayerStats?[]> Positions;
 
+        /// <summary>
+        /// Represents the players included in the lineup
+        /// </summary>
+        public HashSet<Guid> Players;
+
         public WorkingLineup()
         {
             Positions = new Dictionary<string, PlayerStats?[]>();
+            Players = new HashSet<Guid>();
         }
 
         /// <summary>
@@ -136,6 +152,11 @@ public class LineupBuilder
                     array[i] = players[i];
                 }
                 copy.Positions[pos] = array;
+            }
+
+            foreach (var id in Players)
+            {
+                copy.Players.Add(id);
             }
 
             return copy;
